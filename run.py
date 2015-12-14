@@ -44,7 +44,7 @@ for site in settings['sites']:
         # Attempt Download of File
         localpath = (directory + site['username'] + '-' +
                      time.strftime('%Y%m%d%H%M%S') + '.sql')
-        # sftp.get(site['filepath'], localpath)
+        sftp.get(site['filepath'], localpath)
 
         # Close Connection
         sftp.close()
@@ -62,9 +62,7 @@ for site in settings['sites']:
                    site['username'],
                    site['hostname']))
     except IOError:
-        log.error("Could not find the filepath specified: %s" %
-                  site['filepath'])
-
-    sys.exit(0)
+        log.error("Could not find the filepath specified: %s" % (
+                   site['filepath']))
 
 sys.exit(0)
